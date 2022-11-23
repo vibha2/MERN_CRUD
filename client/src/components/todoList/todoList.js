@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
 import TodoService from "../../services/todo.service";
 import { useNavigate } from "react-router-dom";
+// import {
+//   generatePath,
+//   useHistory,
+// } from "react-router-dom";
 import "./todoList.css";
 function TodoList(props) {
   const [todos, settodos] = useState();
@@ -38,6 +42,13 @@ function TodoList(props) {
     );
   };
 
+  const editTask = (id) => {
+    console.log(id);
+     navigate(`/edit-todo/${id}`);
+    //history.push("/edit-todo/:id", { id });    
+    //navigation.navigate('/edit-todo', { id: `${id}` });
+  };
+
   return (
     <div>
       <h2>All Todo</h2>
@@ -61,6 +72,15 @@ function TodoList(props) {
                   className="delete-text"
                 >
                   Delete
+                </td>
+                <td
+                  onClick={() => {
+                    editTask(todo._id);
+                    console.log("Edit Todo Task");
+                  }}
+                  className="edit-text"
+                >
+                  Edit
                 </td>
               </tr>
             ))}

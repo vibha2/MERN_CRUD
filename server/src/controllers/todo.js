@@ -26,7 +26,7 @@ exports.getAllTodos = (req, res) => {
   });
 };
 
-exports.getAllTodosById = (req, res) => {
+exports.getTodoById = (req, res) => {
   Todo.find({ _id: req.params.todoId }, (err, todo) => {
     if (err) return res.status(400).send(err);
     else return res.status(200).send(todo);

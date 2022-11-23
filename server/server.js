@@ -34,7 +34,7 @@ mongoose
   });
 
 //API Endpoints
-app.get("/", (req, res) => {
+app.get("/api", (req, res) => {
   res.status(200).send("Todo express server is working fine.");
 });
 

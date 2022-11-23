@@ -36,7 +36,7 @@ function AddTodo(props) {
       <Form noValidate validated={validated} onSubmit={handleSubmit}>
         <Row className="mb-3 mt-3">
           <Form.Group>
-            <Form.Label>Sprint name</Form.Label>
+            <Form.Label>Task name</Form.Label>
             <Form.Control
               required
               type="text"

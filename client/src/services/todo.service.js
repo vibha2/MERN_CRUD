@@ -5,8 +5,12 @@ const TodoService = {
     return axios_api.post("/todo/", todo);
     },
     
-    getTodos: async function (todo) {
-        return axios_api.get("/todo/", todo);
+    getTodos: async function () {
+        return axios_api.get("/todo/");
+    },
+
+    getTodoById: async function (todoId) {
+        return axios_api.get(`/todo/${todoId}`);
     },
 
     deleteTask: async function (id) {
