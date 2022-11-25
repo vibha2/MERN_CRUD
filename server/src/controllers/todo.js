@@ -29,7 +29,7 @@ exports.getAllTodos = (req, res) => {
 exports.getAllTodosById = (req, res) => {
   Todo.find({ _id: req.params.todoId }, (err, todo) => {
     if (err) return res.status(400).send(err);
-    else return res.status(400).send(todo);
+    else return res.status(200).send(todo);
   });
 };
 
@@ -37,7 +37,7 @@ exports.deleteTodoById = (req, res) => {
   console.log("req.params =>", req.params.todoId);
   Todo.deleteOne({ _id: req.params.todoId }, (err, deleteRes) => {
     if (err) return res.status(400).send(err);
-    else return res.status(400).send({ response: deleteRes.deletedCount });
+    else return res.status(200).send(deleteRes);
   });
 };
 
@@ -50,6 +50,6 @@ exports.updateTodosById = (req, res) => {
 
   Todo.findByIdAndUpdate({ _id: req.params.todoId }, todo, (err, updateRes) => {
     if (err) return res.status(400).send(err);
-    else return res.status(400).send(updateRes);
+    else return res.status(201).send(updateRes);
   });
 };

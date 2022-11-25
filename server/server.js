@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const express = require("express");
+const Cors = require("cors");
 
 //App config
 //mongodb password for amazon-clone user = jW4cHbvnlwYXbiks
@@ -12,6 +13,7 @@ const connection_URL = `mongodb+srv://user62:${password}@cluster0.zgysvx9.mongod
 
 //middlewares
 app.use(express.json());
+app.use(Cors());
 
 //routing
 const todoRouter = require("./src/routes/todo.js");
