@@ -37,6 +37,19 @@ exports.deleteTodoById = (req, res) => {
   console.log("req.params =>", req.params.todoId);
   Todo.deleteOne({ _id: req.params.todoId }, (err, deleteRes) => {
     if (err) return res.status(400).send(err);
-    else return res.status(400).send({response: deleteRes.deletedCount });
+    else return res.status(400).send({ response: deleteRes.deletedCount });
+  });
+};
+
+exports.updateTodosById = (req, res) => {
+  //destructuring only completed flag because we are restricting user to update task name
+  const { completed } = req.body;
+  const todo = {
+    completed,
+  };
+
+  Todo.findByIdAndUpdate({ _id: req.params.todoId }, todo, (err, updateRes) => {
+    if (err) return res.status(400).send(err);
+    else return res.status(400).send(updateRes);
   });
 };
