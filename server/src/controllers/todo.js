@@ -42,9 +42,11 @@ exports.deleteTodoById = (req, res) => {
 };
 
 exports.updateTodosById = (req, res) => {
+  //console.log(req.body)
   //destructuring only completed flag because we are restricting user to update task name
-  const { completed } = req.body;
+  const { task, completed } = req.body;
   const todo = {
+    task,
     completed,
   };
 

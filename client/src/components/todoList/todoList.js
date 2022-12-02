@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import "./todoList.css";
 function TodoList(props) {
   const [todos, settodos] = useState();
+  const [filteredtodos, setFilteredtodos] = useState();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -19,6 +20,7 @@ function TodoList(props) {
       (res) => {
         console.log("todo list => ", res.data);
         settodos(res.data);
+        setFilteredtodos(res.data);
       },
       (err) => {
         console.log("Error todo list => ", err);
@@ -49,19 +51,36 @@ function TodoList(props) {
     //navigation.navigate('/edit-todo', { id: `${id}` });
   };
 
+  const handleSearch = (e) => {
+    console.log("handle event search => ",e.target.value);
+    console.log("Search todos => ",todos);
+    setFilteredtodos(todos.filter((todo) => todo.task.trim().toLowerCase().includes(e.target.value.trim().toLowerCase())));
+  }
+
   return (
     <div>
       <h2>All Todo</h2>
       <button onClick={handleTodo}>Add Todo</button>
+      {/* -------Search(on client side)(without API)--------------  */}
+      <label style={{ paddingLeft: 500 }}>Search Task: </label>
+      <input 
+      type="text"
+      onChange={ (e) => {
+        handleSearch(e)
+      }}
+      />
+
       <div>
         <table id="todoTable">
           <thead>
             <th>Task</th>
             <th>Completed</th>
             <th>Actions</th>
+            <th>
+            </th>
           </thead>
           <tbody>
-            {todos?.map((todo) => (
+            {filteredtodos?.map((todo) => (
               <tr key={todo._id}>
                 <td> {todo.task} </td>
                 <td> {todo.completed ? "yes" : "no"} </td>
